@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>JULIA GAFAS - Catálogo</title>
+
+  <style>
+    :root{
+      --beige:#F6F0E8;
+      --black:#111111;
+      --violet:#7C4DFF;
+      --pink:#FF5DA2;
+      --soft:#E9E2DA;
+      --card:#FFFFFF;
+    }
+
+    *{ box-sizing:border-box; }
+    body{
+      margin:0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(180deg, var(--beige), #fff);
+      color: var(--black);
+    }
+
+    header{
+      position: sticky;
+      top: 0;
+      background: rgba(246,240,232,0.85);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--soft);
+      z-index: 10;
+    }
+
+    .container{ max-width:1100px; margin:0 auto; padding: 14px 16px; }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+      flex-wrap:wrap;
+    }
+
+    .brand-left{
+      display:flex;
+      align-items:center;
+      gap:12px;
+      min-width: 240px;
+    }
+
+    .logo{
+      width:52px; height:52px;
+      border-radius: 999px;
+      border: 1px solid var(--soft);
+      object-fit: cover;
+      background: #fff;
+    }
+
+    .title{ line-height:1.1; }
+    .title h1{
+      font-size: 18px;
+      margin:0;
+      letter-spacing: 0.5px;
+    }
+    .title p{
+      margin:4px 0 0;
+      font-size: 12px;
+      opacity: 0.75;
+    }
+
+    .nav{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      justify-content:flex-end;
+    }
+
+    .btn{
+      appearance:none;
+      border: 1px solid var(--soft);
+      background: var(--card);
+      color: var(--black);
+      padding: 10px 12px;
+      border-radius: 12px;
+      font-weight:700;
+      text-decoration:none;
+      cursor:pointer;
+      transition: 0.2s;
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+    }
+    .btn:hover{ transform: translateY(-1px); }
+
+    .btn-violet{
+      border-color: rgba(124,77,255,0.35);
+      box-shadow: 0 8px 20px rgba(124,77,255,0.12);
+    }
+    .btn-pink{
+      border-color: rgba(255,93,162,0.35);
+      box-shadow: 0 8px 20px rgba(255,93,162,0.12);
+    }
+
+    .hero{ padding: 24px 16px 8px; }
+    .hero-card{
+      max-width:1100px;
+      margin: 0 auto;
+      padding: 18px 16px;
+      border: 1px solid var(--soft);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.72);
+      box-shadow: 0 10px 30px rgba(17,17,17,0.06);
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 14px;
+      flex-wrap:wrap;
+    }
+    .hero h2{ margin:0; font-size: 18px; letter-spacing: 0.2px; }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid var(--soft);
+      background: #fff;
+      font-size: 12px;
+      font-weight:700;
+    }
+    .dot{
+      width:10px;height:10px;border-radius:999px;
+      background: linear-gradient(135deg, var(--violet), var(--pink));
+    }
+
+    .section-title{
+      max-width:1100px;
+      margin: 10px auto 0;
+      padding: 0 16px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:12px;
+    }
+    .section-title h3{
+      margin: 14px 0 6px;
+      font-size:16px;
+    }
+
+    .grid{
+      max-width:1100px;
+      margin: 0 auto;
+      padding: 8px 16px 24px;
+      display:grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .card{
+      background: var(--card);
+      border: 1px solid var(--soft);
+      border-radius: 18px;
+      overflow:hidden;
+      box-shadow: 0 10px 26px rgba(17,17,17,0.06);
+      transition: 0.2s;
+      display:flex;
+      flex-direction:column;
+      min-height: 330px;
+    }
+    .card:hover{ transform: translateY(-2px); }
+
+    .img{
+      height: 190px;
+      background: linear-gradient(135deg, rgba(124,77,255,0.12), rgba(255,93,162,0.10));
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: rgba(17,17,17,0.6);
+      font-weight:700;
+    }
+    .img img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+    }
+
+    .content{
+      padding: 12px 12px 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 8px;
+      flex:1;
+    }
+
+    .model{
+      display:flex;
+      align-items:flex-start;
+      justify-content:space-between;
+      gap:10px;
+    }
+    .model h4{ margin:0; font-size: 16px; }
+
+    .tag{
+      font-size: 11px;
+      font-weight: 800;
+      padding: 6px 10px;
+      border-radius: 999px;
+      border: 1px solid var(--soft);
+      background: #fff;
+      white-space: nowrap;
+    }
+    .tag.oferta{
+      border-color: rgba(255,93,162,0.35);
+      background: rgba(255,93,162,0.10);
+    }
+    .tag.estrella{
+      border-color: rgba(124,77,255,0.35);
+      background: rgba(124,77,255,0.10);
+    }
+
+    .meta{
+      font-size: 13px;
+      opacity: 0.78;
+      margin:0;
+    }
+    .price{
+      font-size: 14px;
+      font-weight: 900;
+      margin-top: 2px;
+    }
+
+    .cta{
+      margin-top:auto;
+      border-radius: 12px;
+      padding: 10px 12px;
+      font-weight: 900;
+      border: 1px solid var(--soft);
+      background: #fff;
+      color: var(--black);
+      cursor:pointer;
+    }
+    .cta.whatsapp{
+      border-color: rgba(124,77,255,0.35);
+      background: linear-gradient(135deg, rgba(124,77,255,0.14), rgba(255,93,162,0.12));
+    }
+
+    .empty{
+      max-width:1100px;
+      margin: 0 auto;
+      padding: 8px 16px 24px;
+      opacity: 0.7;
+      font-size: 13px;
+    }
+
+    footer{
+      border-top: 1px solid var(--soft);
+      background: rgba(246,240,232,0.55);
+      padding: 18px 16px;
+      text-align:center;
+      font-size: 13px;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 520px){
+      .brand-left{ min-width: 0; }
+      .nav{ justify-content:flex-start; }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="container">
+    <div class="brand">
+      <div class="brand-left">
+        <!-- Cambiá el nombre del archivo si tu logo se llama distinto -->
+        <img class="logo" src="logo-julia.png" alt="Julia Gafas">
+        <div class="title">
+          <h1>JULIA GAFAS</h1>
+          <p>Anteojos de sol unisex • Atención por WhatsApp</p>
+        </div>
+      </div>
+
+      <nav class="nav">
+        <a class="btn btn-violet" href="#modelos">Modelos</a>
+        <a class="btn btn-pink" href="#ofertas">Ofertas</a>
+        <a class="btn btn-violet" href="#estrella">Producto estrella</a>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-card">
+    <h2>Elegí tu modelo y consultá en 1 click ✨</h2>
+    <div class="badge"><span class="dot"></span> Stock sujeto a disponibilidad</div>
+  </div>
+</section>
+
+<div class="section-title" id="modelos"><h3>Modelos</h3></div>
+<section class="grid" id="grid-modelos"></section>
+<div class="empty" id="empty-modelos" style="display:none;">No hay modelos en stock por ahora.</div>
+
+<div class="section-title" id="ofertas"><h3>Ofertas</h3></div>
+<section class="grid" id="grid-ofertas"></section>
+<div class="empty" id="empty-ofertas" style="display:none;">No hay ofertas activas por ahora.</div>
+
+<div class="section-title" id="estrella"><h3>Producto estrella</h3></div>
+<section class="grid" id="grid-estrella"></section>
+<div class="empty" id="empty-estrella" style="display:none;">No hay producto estrella configurado.</div>
+
+<footer>
+  ¿Te gustó un modelo? Tocá <b>Consultar por WhatsApp</b> y Julia te responde 👓💜
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+<script>
+  // ✅ 1) WhatsApp (sin +, sin espacios)
+  const WHATSAPP_NUMERO = "5493518020547";
+
+  // ✅ 2) CSV de tu Google Sheet
+  const CSV_URL =
+    "https://docs.google.com/spreadsheets/d/1AuRr8jXcG3qFbxmbtfVRmgAUz7y4T0I0JZx0uO1Y6_E/export?format=csv&gid=0";
+
+  function driveToImg(urlOrId) {
+    const s = String(urlOrId || "").trim();
+    if (!s) return "";
+
+    // Si ya es una URL directa válida
+    if (
+      s.startsWith("http") &&
+      (s.includes("googleusercontent.com") || s.includes("lh3.googleusercontent.com"))
+    ) {
+      return s;
+    }
+
+    // Extraer ID si viene como link de Drive
+    let id = s;
+    const m1 = s.match(/\/d\/([a-zA-Z0-9_-]+)/);
+    const m2 = s.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+    if (m1) id = m1[1];
+    else if (m2) id = m2[1];
+
+    // ✅ Thumbnail (más compatible para <img>)
+    return `https://drive.google.com/thumbnail?id=${encodeURIComponent(id)}&sz=w1200`;
+  }
+
+  function tagClass(seccion) {
+    const x = String(seccion || "").toUpperCase();
+    if (x === "OFERTAS") return "oferta";
+    if (x === "ESTRELLA") return "estrella";
+    return "";
+  }
+
+  function tagText(seccion) {
+    const x = String(seccion || "").toUpperCase();
+    if (x === "OFERTAS") return "🔥 Oferta";
+    if (x === "ESTRELLA") return "⭐ Estrella";
+    return "Nuevo";
+  }
+
+  function consultarWhatsApp(modelo, precio) {
+    const msg = `Hola! Me interesa el anteojo "${modelo}". Precio: ${precio}. ¿Hay stock? 😊`;
+    const url = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(msg)}`;
+
+    // ✅ más compatible que window.open si algún navegador bloquea popups
+    window.location.href = url;
+  }
+
+  function cardHTML(p) {
+    const img = driveToImg(p.imagen);
+    const seccion = (p.seccion || "MODELOS").toUpperCase();
+    const cls = tagClass(seccion);
+
+    return `
+      <article class="card">
+        <div class="img">
+          ${img ? `<img src="${img}" alt="${p.modelo}">` : `Sin imagen`}
+        </div>
+
+        <div class="content">
+          <div class="model">
+            <h4>${p.modelo}</h4>
+            <span class="tag ${cls}">${tagText(seccion)}</span>
+          </div>
+
+          <p class="meta">${p.descripcion || ""}</p>
+          <div class="price">$ ${p.precio || ""}</div>
+
+          <button
+            class="cta whatsapp"
+            type="button"
+            data-modelo="${String(p.modelo || "").replaceAll('"','&quot;')}"
+            data-precio="${String(p.precio || "").replaceAll('"','&quot;')}"
+          >
+            Consultar por WhatsApp
+          </button>
+        </div>
+      </article>
+    `;
+  }
+
+  function showEmptyIfNeeded(gridId, emptyId) {
+    const grid = document.getElementById(gridId);
+    const empty = document.getElementById(emptyId);
+    empty.style.display = grid.children.length ? "none" : "block";
+  }
+
+  Papa.parse(CSV_URL, {
+    download: true,
+    header: true,
+    skipEmptyLines: "greedy",
+    complete: (res) => {
+      const rows = res.data || [];
+
+      const productos = rows
+        .map((r) => ({
+          id: String(r.id || r.ID || "").trim(),
+          modelo: String(r.modelo || r.Modelo || r.MODELO || "").trim(),
+          descripcion: String(r.descripcion || r.Descripcion || r.DESCRIPCION || "").trim(),
+          precio: String(r.precio || r.Precio || r.PRECIO || "").trim(),
+          imagen: String(r.imagen || r.Imagen || r.IMAGEN || "").trim(),
+          seccion: String(r.seccion || r.Seccion || r.SECCION || "MODELOS").trim(),
+          stock: String(r.stock || r.Stock || r.STOCK || "SI").trim().toUpperCase(),
+        }))
+        .filter((p) => p.modelo && p.stock !== "NO"); // oculta sin stock
+
+      const gModelos = document.getElementById("grid-modelos");
+      const gOfertas = document.getElementById("grid-ofertas");
+      const gEstrella = document.getElementById("grid-estrella");
+
+      // limpiar por si recarga
+      gModelos.innerHTML = "";
+      gOfertas.innerHTML = "";
+      gEstrella.innerHTML = "";
+
+      productos.forEach((p) => {
+        const s = (p.seccion || "MODELOS").toUpperCase();
+        const html = cardHTML(p);
+
+        if (s === "OFERTAS") gOfertas.insertAdjacentHTML("beforeend", html);
+        else if (s === "ESTRELLA") gEstrella.insertAdjacentHTML("beforeend", html);
+        else gModelos.insertAdjacentHTML("beforeend", html);
+      });
+
+      showEmptyIfNeeded("grid-modelos", "empty-modelos");
+      showEmptyIfNeeded("grid-ofertas", "empty-ofertas");
+      showEmptyIfNeeded("grid-estrella", "empty-estrella");
+
+      // ✅ Activar WhatsApp (después de renderizar TODO)
+      document.querySelectorAll("button.cta.whatsapp").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          const modelo = btn.dataset.modelo || "";
+          const precio = btn.dataset.precio || "";
+          consultarWhatsApp(modelo, precio);
+        });
+      });
+    },
+    error: (err) => {
+      console.error(err);
+      alert("No pude cargar la planilla. Revisá que esté compartida como 'cualquiera con el enlace'.");
+    },
+  });
+</script>
+
+
+</body>
+</html>
+
